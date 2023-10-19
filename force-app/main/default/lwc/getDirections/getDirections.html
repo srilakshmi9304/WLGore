@@ -1,0 +1,67 @@
+<template>
+    <div class="container">
+        <lightning-input-address
+        address-label="Enter Origin Address"
+        id="originInput" 
+        placeholder="Origin" 
+        onchange={handleOriginInputChange}
+        required
+        show-address-lookup
+    >
+    </lightning-input-address>
+    <lightning-input-address
+        address-label="Enter Destination Address"
+        id="destinationInput" 
+        placeholder="Origin" 
+        onchange={handleDestinationInputChange}
+        required
+        show-address-lookup
+    >
+    </lightning-input-address>
+        <button onclick={getDirections} class="custom-button">Get Directions</button>
+
+        <template if:true={error}>
+            <div class="error-message">{error}</div>
+        </template>
+
+        <template if:true={directions.distance}>
+            <div class="result">
+                <p><strong>Distance:</strong> {directions.distance}</p>
+                <p><strong>Travel Time:</strong> {directions.travelTime}</p>
+                <p><strong>Travel Cost</strong></p>
+                <template for:each={directions.transportationRates} for:item="item">
+                    <p key={item.mode}>{item.mode}: ${item.rate}</p>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>
+
+<!--template>
+    <div class="container">
+        <div class="input-field">
+            <label for="originInput">Origin</label>
+            <input type="text" id="originInput" placeholder="Enter origin address" oninput={handleOriginInputChange}>
+        </div>
+        <div class="input-field">
+            <label for="destinationInput">Destination</label>
+            <input type="text" id="destinationInput" placeholder="Enter destination address" oninput={handleDestinationInputChange}>
+        </div>
+        <button onclick={getDirections} class="custom-button">Get Directions</button>
+
+        <template if:true={error}>
+            <div class="error-message">{error}</div>
+        </template>
+
+        <template if:true={directions.distance}>
+            <div class="result">
+                <p><strong>Distance:</strong> {directions.distance}</p>
+                <p><strong>Travel Time:</strong> {directions.travelTime}</p>
+                <p><strong>Travel Cost</strong></p>
+                <template for:each={directions.transportationRates} for:item="item">
+                    <p key={item.mode}>{item.mode}: ${item.rate}</p>
+                </template>
+            </div>
+        </template>
+    </div>
+</template-->
